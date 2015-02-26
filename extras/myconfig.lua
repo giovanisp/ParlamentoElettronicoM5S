@@ -4,7 +4,7 @@
 
 -- Name of this instance, defaults to name of config file
 -- ------------------------------------------------------------------------
-config.instance_name = "Parlamento Elettronico Movimento Cinque Stelle"
+config.instance_name = "Parlamento Elettronico Online"
 
 
 -- Information about service provider (HTML)
@@ -12,54 +12,50 @@ config.instance_name = "Parlamento Elettronico Movimento Cinque Stelle"
 config.app_service_provider = ""
 
 config.gui_preset = {
-  default = {
-    name = "default",
-    start_page = "_index_default"
-  }, 
-  M5S = {
-    name = "M5S",
-    start_page = "_welcome",
-    units = {
-      eletti = {
-        unit_id = 1,
-        unit_title = _"ELECTEDS THEMATIC AREAS",
-        area_filter_title = _"CHOOSE THE ELECTEDS INITIATIVES YOU WANT TO READ:",
-        assembly_title = _"#{realname}, you are now in the Regione Lazio Assembly",
-        issues_desc_development =_"Electeds Initiatives In Discussion",
-        issues_desc_closed = _"Electeds Initiatives Completed or Retired"
-      },
-      cittadini = {
-        unit_id = 2,
-        unit_title = _"CITIZENS THEMATIC AREAS",
-        area_filter_title = _"CHOOSE THE CITIZENS INITIATIVES YOU WANT TO READ:",
-        assembly_title = _"#{realname}, you are now in the Regione Lazio Assembly",
-        issues_desc_development =_"Citizens Initiatives In Discussion",
-        issues_desc_closed = _"Citizens Initiatives Completed or Retired",
-        issues_desc_admission =  _"Citizens Initiatives Looking For Supporters"
-      },
-      iscritti = {
-        unit_id = 3,
-        unit_title = _"M5S MEMBERS THEMATIC AREAS",
-        area_filter_title = _"CHOOSE THE MEMBERS INITIATIVES YOU WANT TO READ:",
-        assembly_title = _"#{realname}, you are now in the Regione Lazio Internal Assembly",
-        issues_desc_development =_"M5S Members Initiatives In Discussion",
-        issues_desc_closed = _"M5S Members Initiatives Completed or Retired",
-        issues_desc_admission =  _"M5S Members Initiatives Looking For Supporters"
-      },
-      altri_gruppi = {
-        unit_id = 4,
-        unit_title = _"OTHER POLITICAL GROUPS THEMATIC AREAS",
-        area_filter_title = _"CHOOSE THE OTHER GROUPS INITIATIVES YOU WANT TO READ:",
-        assembly_title = _"#{realname}, you are now in the Regione Lazio Assembly",
-        issues_desc_development =_"Other Groups Initiatives In Discussion",
-        issues_desc_closed = _"Other Groups Initiatives Completed or Retired"
-      }
+    default = {
+        name = "default",
+        start_page = "_index_default"
+    },
+    custom = {
+        name = "custom",
+        start_page = "_welcome_bs",
+        units = {
+            eletti = {
+                type_id = 1,
+                unit_title = _ "ELECTEDS THEMATIC AREAS",
+                area_filter_title = _ "CHOOSE THE ELECTEDS INITIATIVES YOU WANT TO READ:",
+                assembly_title = _ "#{realname}, you are now in the Regione Lazio Assembly",
+                issues_desc_development = _ "Electeds Initiatives In Discussion",
+                issues_desc_closed = _ "Electeds Initiatives Completed or Retired"
+            },
+            cittadini = {
+                type_id = 0,
+                unit_title = _ "CITIZENS THEMATIC AREAS",
+                area_filter_title = _ "CHOOSE THE CITIZENS INITIATIVES YOU WANT TO READ:",
+                assembly_title = _ "#{realname}, you are now in the Regione Lazio Assembly",
+                issues_desc_development = _ "Citizens Initiatives In Discussion",
+                issues_desc_closed = _ "Citizens Initiatives Completed or Retired",
+                issues_desc_admission = _ "Citizens Initiatives Looking For Supporters"
+            },
+            iscritti = {
+                type_id = 0,
+                unit_title = _ "M5S MEMBERS THEMATIC AREAS",
+                area_filter_title = _ "CHOOSE THE MEMBERS INITIATIVES YOU WANT TO READ:",
+                assembly_title = _ "#{realname}, you are now in the Regione Lazio Internal Assembly",
+                issues_desc_development = _ "M5S Members Initiatives In Discussion",
+                issues_desc_closed = _ "M5S Members Initiatives Completed or Retired",
+                issues_desc_admission = _ "M5S Members Initiatives Looking For Supporters"
+            },
+            altri_gruppi = {
+                type_id = 2,
+                unit_title = _ "OTHER POLITICAL GROUPS THEMATIC AREAS",
+                area_filter_title = _ "CHOOSE THE OTHER GROUPS INITIATIVES YOU WANT TO READ:",
+                assembly_title = _ "#{realname}, you are now in the Regione Lazio Assembly",
+                issues_desc_development = _ "Other Groups Initiatives In Discussion",
+                issues_desc_closed = _ "Other Groups Initiatives Completed or Retired"
+            }
+        }
     }
-  },
-  test = {
-    name = "test",
-    start_page = "_welcome"
-  }
 }
 
 -- A rocketwiki formatted text the user has to accept while registering
@@ -70,34 +66,40 @@ config.use_terms = "=== Terms of Use ==="
 -- Checkbox(es) the user has to accept while registering
 -- ------------------------------------------------------------------------
 config.use_terms_checkboxes = {
-  {
-    name = "terms_of_use_v1",
-    html = "I accept the terms of use.",
-    not_accepted_error = "You have to accept the terms of use to be able to register."
-  },
---  {
---    name = "extra_terms_of_use_v1",
---    html = "I accept the extra terms of use.",
---    not_accepted_error = "You have to accept the extra terms of use to be able to register."
---  }
+    {
+        name = "terms_of_use_v1",
+        html = "I accept the terms of use.",
+        not_accepted_error = "You have to accept the terms of use to be able to register."
+    },
+    --  {
+    --    name = "extra_terms_of_use_v1",
+    --    html = "I accept the extra terms of use.",
+    --    not_accepted_error = "You have to accept the extra terms of use to be able to register."
+    --  }
 }
 
-  
+
 -- Absolute base url of application
 -- ------------------------------------------------------------------------
-config.absolute_base_url = "/lf"
+config.absolute_base_url = "https://test.parelon.com/lf"
 
 
 -- Connection information for the LiquidFeedback database
 -- ------------------------------------------------------------------------
-config.database = { engine='postgresql', dbname='liquid_feedback' }
+config.secure_database = {
+    engine = 'postgresql',
+    dbname = 'parelon_cert',
+    host = 'localhost',
+    port = '5432',
+    user = 'www-data'
+}
 
 
 -- Location of the rocketwiki binaries
 -- ------------------------------------------------------------------------
 config.formatting_engine_executeables = {
-  rocketwiki= "/opt/rocketwiki-lqfb/rocketwiki-lqfb",
-  compat = "/opt/rocketwiki-lqfb/rocketwiki-lqfb-compat"
+    rocketwiki = "/opt/rocketwiki-lqfb/rocketwiki-lqfb",
+    compat = "/opt/rocketwiki-lqfb/rocketwiki-lqfb-compat"
 }
 
 
@@ -117,7 +119,7 @@ config.formatting_engine_executeables = {
 -- "everything"
 --     -> Show everything a member can see, including profile pages
 -- ------------------------------------------------------------------------
-config.public_access = "none"
+config.public_access = "anonymous"
 
 
 
@@ -141,13 +143,13 @@ config.default_lang = "it"
 
 -- Prefix of all automatic mails, defaults to "[Liquid Feedback] "
 -- ------------------------------------------------------------------------
-config.mail_subject_prefix = "Parlamento Elettronico M5S "
+config.mail_subject_prefix = "Parlamento Elettronico Online "
 
 -- Sender of all automatic mails, defaults to system defaults
 -- ------------------------------------------------------------------------
--- config.mail_envelope_from = "liquidfeedback@example.com"
--- config.mail_from = { name = "LiquidFeedback", address = "liquidfeedback@example.com" }
--- config.mail_reply_to = { name = "Support", address = "support@example.com" }
+config.mail_envelope_from = "info@parelon.com"
+config.mail_from = { name = "Parlamento Elettronico Online", address = "info@parelon.com" }
+config.mail_reply_to = { name = "Support", address = "support@parelon.com" }
 
 -- Configuration of password hashing algorithm (defaults to "crypt_sha512")
 -- ------------------------------------------------------------------------
@@ -168,7 +170,8 @@ config.mail_subject_prefix = "Parlamento Elettronico M5S "
 
 -- Local directory for database dumps offered for download
 -- ------------------------------------------------------------------------
--- config.download_dir = nil
+config.download_dir = "/opt/replica/parelon_cert/"
+config.db_dump_dir = "/opt/backups/parelon_cert/"
 
 -- Special use terms for database dump download
 -- ------------------------------------------------------------------------
@@ -211,38 +214,39 @@ config.mail_subject_prefix = "Parlamento Elettronico M5S "
 -- The available_func is optional, if not set any target date is allowed
 
 config.free_timing = {
-  calculate_func = function(policy, timing_string)
-    function interval_by_seconds(secs)
-      local secs_per_day = 60 * 60 * 24
-      local days
-      days = math.floor(secs / secs_per_day)
-      secs = secs - days * secs_per_day
-      return days .. " days " .. secs .. " seconds"
+    calculate_func = function(policy, timing_string)
+        function interval_by_seconds(secs)
+            local secs_per_day = 60 * 60 * 24
+            local days
+            days = math.floor(secs / secs_per_day)
+            secs = secs - days * secs_per_day
+            return days .. " days " .. secs .. " seconds"
+        end
+
+        local target_date = parse.date(timing_string, atom.date)
+        if not target_date then
+            return false
+        end
+        local target_timestamp = target_date.midday
+        local now = atom.timestamp:get_current()
+        trace.debug(target_timestamp, now)
+        local duration = target_timestamp - now
+        if duration < 0 then
+            return false
+        end
+        return {
+            discussion = interval_by_seconds(duration / 7 * 4),
+            verification = interval_by_seconds(duration / 7 * 1),
+            voting = interval_by_seconds(duration / 7 * 2)
+        }
+    end,
+    available_func = function(policy)
+        return {
+            { name = "End of 2013", id = '2013-12-31' },
+            { name = "End of 2014", id = '2014-12-31' },
+            { name = "End of 2015", id = '2015-12-31' }
+        }
     end
-    local target_date = parse.date(timing_string, atom.date)
-    if not target_date then
-      return false
-    end
-    local target_timestamp = target_date.midday
-    local now = atom.timestamp:get_current()
-    trace.debug(target_timestamp, now)
-    local duration = target_timestamp - now
-    if duration < 0 then
-      return false
-    end
-    return {
-      discussion = interval_by_seconds(duration / 7 * 4),
-      verification = interval_by_seconds(duration / 7 * 1),
-      voting = interval_by_seconds(duration / 7 * 2)
-    }
-  end,
-  available_func = function(policy)
-    return { 
-      { name = "End of 2013", id = '2013-12-31' },
-      { name = "End of 2014", id = '2014-12-31' },
-      { name = "End of 2015", id = '2015-12-31' }
-    }
-  end
 }
 
 -- WebMCP accelerator
